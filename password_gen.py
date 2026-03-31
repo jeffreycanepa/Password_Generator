@@ -9,6 +9,7 @@
 # Import necessary libs.
 import random
 import string
+import sys
 
 # Define the character set
 characters = string.ascii_letters + string.digits + string.punctuation
@@ -40,12 +41,15 @@ def generate_password(length):
 
 # Main(): ask user for password length, call generate_password(length), and output the result
 def main():
-
-    length = int(input("Enter the desired length for your password: "))
-
-    password = generate_password(length)
-
-    print(f"Generated Password: {password}")
+    if len(sys.argv) > 1:
+        # Get the first argument passed to the script
+        length  = int(sys.argv[1])
+        password = generate_password(length)
+        print(password)
+    else:
+        length = int(input("Enter the desired length for your password: "))
+        password = generate_password(length)
+        print(f"Generated Password: {password}")
 
 if __name__ == "__main__":
 
